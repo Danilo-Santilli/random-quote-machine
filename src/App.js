@@ -1,23 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import { FaTwitter} from 'react-icons/fa';
 
-function App() {
+function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+    <div className='container'>
+      <div id='quote-box'>
+        <div id="text">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Eos repellendus animi aspernatur explicabo amet adipisci eum, 
+            excepturi quibusdam? Dolore recusandae repudiandae maxime?
+        </div>
+        <div id="author">
+          - Danilo Santilli
+        </div>        
+        
+        <a href="https://www.twitter.com/intent/tweet">
+          <FaTwitter size={25} ></FaTwitter>
         </a>
-      </header>
+        <button id="new-quote">New</button>
+      </div>
     </div>
   );
 }
