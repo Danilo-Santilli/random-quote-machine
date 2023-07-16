@@ -1,20 +1,30 @@
 import './App.css';
-import { FaTwitter} from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { FaGithub} from 'react-icons/fa';
+import { useState, useEffect, useCallback } from 'react';
 
 function App(){
   const [quote, setQuote] = useState();
 
   useEffect(()=>{
-    const fetchQuote = async () => {
-      const res = await fetch('../services/quotes.json');
-      const quotes = await res.json();
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      const randomQuote = quotes[randomIndex - 1];
-      setQuote(randomQuote);
-    }
-    fetchQuote();
+    quoteSelect();
   },[])
+
+  const quoteSelect = useCallback( async ()=>{
+    const response = await fetch('../services/quotes.json');
+    const quotes = await response.json();
+    let randomQuote = Math.floor(Math.random() * quotes.length)
+    if (randomQuote === 0) randomQuote =+ 1
+    const quoteSelected = quotes[randomQuote - 1]
+    if (quoteSelected === quote) {
+      quoteSelect();
+    }
+    setQuote(quoteSelected);
+  }, [quote])
+
+  function handleChangeQuote(e){
+    e.preventDefault();
+    quoteSelect();
+  }
 
   return (
     <>
@@ -28,10 +38,10 @@ function App(){
               - {quote.author}
             </div>        
           
-            <a href="https://www.twitter.com/intent/tweet">
-              <FaTwitter size={25} ></FaTwitter>
+            <a href="https://github.com/Danilo-Santilli/random-quote-machine" target='_blank' rel='noreferrer'>
+              <FaGithub size={25} ></FaGithub>
             </a>
-            <button id="new-quote">New</button>
+            <button id="new-quote" onClick={handleChangeQuote}>New</button>
           </div>
         </div>
       ) : "Loading..."}

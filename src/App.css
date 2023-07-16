@@ -32,20 +32,25 @@
 
 #quote-box button{
   float: right;
+  border-radius: 10px;
+  border: none;
+  background-color: #408f00;
+  color: #fff;
 } 
 
 #quote-box a{
   float: left;
-  background-color: blue;
+  background-color: #000;
   text-decoration: none;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: all 0.2s;
+  border-radius: 10px;
 }
 
-#quote-box a:hover{
-  background-color: rgba( 0, 0, 255, 0.8)
+#quote-box a:hover, #quote-box button:hover{
+  opacity: 0.7;
 }
 
 #quote-box a svg{
